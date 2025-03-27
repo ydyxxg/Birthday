@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;700&display=swap');
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; /* Полностью запрещает скроллинг */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: 'Montserrat', sans-serif;
+            color: #e0e0e0;
+            position: relative;
+        }
+
+        .container {
+            width: 500px;
+            max-width: 90vw;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(255, 46, 46, 0.7);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            background: black;
+            color: white;
+            padding: 10px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .subtext {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #ff2e2e;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .content {
+            background: url('https://source.unsplash.com/400x300/?celebration,fireworks') center/cover;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            font-weight: bold;
+            text-align: justify;
+        }
+
+        .details {
+            background: #ff2e2e;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            border-radius: 0 0 10px 10px;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Фото по бокам */
+        .side-image {
+            position: absolute;
+            width: 300px;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .left-image {
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url('44.jpg');
+        }
+
+        .right-image {
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url('33.jpg');
+        }
+
+        /* Конфетти */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-10px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Адаптация под мобильные устройства */
+        @media (max-width: 768px) {
+            .container {
+                width: 90vw;
+                font-size: 0.9em;
+            }
+            .header {
+                font-size: 1.8em;
+            }
+            .subtext {
+                font-size: 1.3em;
+            }
+            .message {
+                font-size: 14px;
+            }
+            .details {
+                font-size: 20px;
+            }
+            .side-image {
+                width: 100px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="side-image left-image"></div>
+    <div class="container">
+        <div class="header">
+            С Днём Рождения! <br/><span class="subtext">Моя невероятная Илона!</span>
+        </div>
+        <div class="content">
+            <div class="overlay"></div>
+            <div class="message">
+                Ты — невероятный человек, и я безумно счастлива, что ты есть в моей жизни! С тобой любая ерунда превращается в приключение, а даже самый обычный день становится особенным.
+                <br/><br/>
+                Я хочу, чтобы ты всегда чувствовала себя любимой, нужной и бесконечно счастливой. Пусть рядом будут только те, кто тебя ценит, пусть мечты сбываются, а жизнь преподносит только приятные сюрпризы! Ты заслуживаешь всего самого лучшего, и я уверена, что у тебя впереди только самое прекрасное.
+            </div>
+        </div>
+        <div class="details">
+            <p>С днём рождения, моя бесценная Илона!<br/> Люблю до луны и обратно!</p>
+        </div>
+    </div>
+    <div class="side-image right-image"></div>
+
+    <script>
+        function createConfetti() {
+            if (document.querySelectorAll('.confetti').length > 50) return; // Ограничиваем количество конфетти
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            confetti.style.width = confetti.style.height = Math.random() * 8 + 4 + "px";
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        setInterval(createConfetti, 200);
+    </script>
+</body>
+</html>
