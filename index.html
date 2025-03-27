@@ -32,6 +32,7 @@
             box-shadow: 0px 0px 20px rgba(255, 46, 46, 0.7);
             position: relative;
             z-index: 10;
+            top: 20px;
         }
 
         .header {
@@ -53,6 +54,7 @@
             background: url('https://source.unsplash.com/400x300/?celebration,fireworks') center/cover;
             padding: 30px 20px;
             position: relative;
+            
         }
 
         .overlay {
@@ -81,34 +83,61 @@
         /* Фото по бокам */
         .side-image {
             position: absolute;
-            width: 300px;
-            height: 500px;
+            width: 200px; /* Размер фото */
+            height: 200px;
             background-size: cover;
             background-position: center;
+            z-index: 10;
         }
 
         .left-image {
-            left: 5%;
-            top: 50%;
+            left: 50px;
+            top: 250px;
             transform: translateY(-50%);
-            background-image: url('44.jpg');
         }
 
         .right-image {
-            right: 5%;
-            top: 50%;
+            right: 150px;
+            top: 250px;
             transform: translateY(-50%);
-            background-image: url('33.jpg');
+        }
+
+        /* Изображения для мобильной версии (сверху и снизу) */
+        .top-image {
+            position: absolute;
+            top: -80px; /* Размещаем картинку сверху */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            z-index: 9;
+        }
+
+        .bottom-image {
+            position: absolute;
+            bottom: -80px; /* Размещаем картинку снизу */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            z-index: 9;
         }
 
         /* Конфетти */
         .confetti {
             position: absolute;
+            top: -10px;
+            left: 50%; /* Центрируем */
+            transform: translateX(-50%);
             width: 10px;
             height: 10px;
             background: red;
             border-radius: 50%;
-            opacity: 0.8;
+            opacity: 0.7;
             animation: fall linear infinite;
         }
 
@@ -117,33 +146,65 @@
             to { transform: translateY(100vh); opacity: 0; }
         }
 
-        /* Адаптация под мобильные устройства */
-        @media (max-width: 768px) {
+        /* Мобильная версия (от 320px до 768px) */
+        @media (min-width: 320px) and (max-width: 768px) {
+            /* Оставляем прокрутку на мобильных устройствах */
+            html, body {
+                overflow-y: auto; /* Включаем вертикальную прокрутку */
+                height: auto;
+            }
+            
+            /* Контейнер адаптируем по ширине */
             .container {
-                width: 90vw;
-                font-size: 0.9em;
+                top: 450px;
+                width: 90%;
+                height: auto;
             }
+
+            /* Перемещаем изображения сверху и снизу */
+            .side-image {
+                display: none; /* Убираем изображения справа и слева на мобильных устройствах */
+            }
+
+            .top-image {
+                top: 50px;
+                width: 350px;
+                height: 350px;
+                background-image: url('44.jpg');
+            }
+
+            .bottom-image {
+                bottom: -1000px;
+                width: 400px;
+                height: 500px;
+                background-image: url('33.jpg');
+            }
+
+            /* Уменьшаем шрифт на мобильных устройствах */
             .header {
-                font-size: 1.8em;
-            }
-            .subtext {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
             .message {
-                font-size: 14px;
+                font-size: 12px;
             }
             .details {
-                font-size: 20px;
+                font-size: 1.2em;
             }
-            .side-image {
-                width: 100px;
-                height: 150px;
+        }
+
+        /* Для устройств меньших 320px */
+        @media (max-width: 319px) {
+            html, body {
+                overflow-y: auto; /* Включаем вертикальную прокрутку */
+            }
+            .container {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="side-image left-image"></div>
+    <div class="side-image left-image "><img src="44.jpg" /></div>
     <div class="container">
         <div class="header">
             С Днём Рождения! <br/><span class="subtext">Моя невероятная Илона!</span>
@@ -160,7 +221,11 @@
             <p>С днём рождения, моя бесценная Илона!<br/> Люблю до луны и обратно!</p>
         </div>
     </div>
-    <div class="side-image right-image"></div>
+    <div class="side-image right-image"><img src="33.jpg" /></div>
+
+    <!-- Изображения сверху и снизу для мобильной версии -->
+    <div class="top-image"></div>
+    <div class="bottom-image"></div>
 
     <script>
         function createConfetti() {
