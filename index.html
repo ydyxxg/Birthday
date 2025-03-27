@@ -12,7 +12,8 @@
             padding: 0;
             width: 100vw;
             height: 100%;
-            overflow: hidden; /* Полностью запрещает скроллинг */
+            overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+            overflow-y: auto; /* Разрешаем вертикальную прокрутку */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -51,7 +52,7 @@
         }
 
         .content {
-            background: url('https://source.unsplash.com/400x300/?celebration,fireworks') center/cover;
+
             padding: 30px 20px;
             position: relative;
             
@@ -156,7 +157,7 @@
             
             /* Контейнер адаптируем по ширине */
             .container {
-                top: 450px;
+                margin-top: 450px;
                 width: 90%;
                 height: auto;
             }
@@ -167,14 +168,14 @@
             }
 
             .top-image {
-                top: 50px;
+                margin-top: 150px;
                 width: 350px;
                 height: 350px;
                 background-image: url('44.jpg');
             }
 
             .bottom-image {
-                bottom: -1000px;
+                margin-bottom: -500px;
                 width: 400px;
                 height: 500px;
                 background-image: url('33.jpg');
